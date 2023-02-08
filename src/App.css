@@ -3,10 +3,11 @@
   grid-template-columns: auto auto;
 } */
 
-body{
+ /* body{
   background-color: lightblue;
-}
+} */
 
+/*
 .form-input{
   border: none;
   width: 100%;
@@ -31,4 +32,196 @@ body{
 
 .btnLogin{
   margin-top: 10%;
+} */
+
+
+.form-input{
+  border-radius: 20px;
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+  /* box-shadow: 8px 8px 8px #cbced1 inset, -8px -8px 8px white inset; */
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 10px 15px 10px 10px;
+}
+
+
+.form-heading{
+  margin: 15% 0% 10% 0%;
+}
+
+.forgot-password{
+  margin-top: 3%;
+  margin-right: 12%;
+  float: right;
+}
+.main-div-login{
+  background: url('./../public/images/456.jpg');
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  
+}
+.login-con{
+  margin: 1% 8%;
+  position: absolute;
+  box-shadow:5px 10px 8px #888888;
+}
+
+.form-forget{
+  text-decoration: none;
+  color: #6b706c;
+}
+
+.btnLogin{
+  margin: 10% 0% 15% 0%;
+}
+
+.btnLog{
+  box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+  outline: none;
+  border-radius: 20px;
+}
+
+/* .secdiv{
+  background: url('./../public/images/2.jpg');
+} */
+
+.seccon{
+  box-shadow: 20px snow;
+}
+/* Admin  */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+.main-container {
+display: flex;
+}
+main {
+padding: 10px;
+}
+
+.title {
+font-size: 3rem;
+display: grid;
+place-items: center;
+}
+
+/* Sidebar */
+.sidebar {
+  background: rgb(6, 15, 85);
+  color: white;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.top_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+.logo {
+  font-size: 25px;
+  line-height: 0;
+}
+.bars {
+  width: 30px;
+}
+.hide {
+  display: none;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 30px;
+  padding: 10px;
+}
+.search input {
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  background: rgb(238, 238, 238);
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+}
+
+.routes {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.link {
+  display: flex;
+  color: white;
+  gap: 10px;
+  padding: 5px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.link:hover {
+  border-right: 5px solid white;
+  border-left: 5px solid white;
+  border-radius: 8px;  
+  background: rgb(45, 51, 89);
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.active {
+  border-right: 5px solid white;
+  border-left: 5px solid white;
+  border-radius: 8px;  
+  background: rgb(45, 51, 89);
+}
+.link_text {
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.menu {
+  display: flex;
+  color: white;
+
+  padding: 5px 10px;
+  border-right: 4px solid transparent;
+  transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  justify-content: space-between;
+}
+.menu_item {
+  display: flex;
+  gap: 10px;
+}
+.menu_container {
+  display: flex;
+  flex-direction: column;
+}
+.menu_container .link {
+  padding-left: 20px;
+  border-bottom: #fff 0.5px solid;
+}
+
+
+
+/* Dashboard CSS */
+
+
+.logodashboard{
+  height: 113px;
+  width: 140px;
+  white-space: nowrap;
+  display: flex;  
+}
+
+.dashname{
+  white-space: nowrap;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  height: 30px;
 }

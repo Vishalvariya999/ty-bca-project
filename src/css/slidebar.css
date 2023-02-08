@@ -1,0 +1,79 @@
+.logo{
+    height: 74px;
+}
+
+.list-group-item {
+    font-size: 14.5px;
+    padding: 20px;
+    background-color: #21252a;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.list-group-item span {
+    margin-left: 10px;
+}
+
+.list-group-item:hover {
+    background-color: white;
+    color: #21252a;
+}
+
+.top-nav.bg-light.fs-4 {
+    text-align: right;
+    height: 25%;
+    padding: 24px;
+    color: black;
+}
+
+.check:checked{
+    background-color: #198754;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;    
+}
+
+th:first-child{
+    background-color: white;
+}
+
+th:nth-child(2){
+   border-top-left-radius: 15px;
+}
+
+th:nth-child(11){
+    border-top-right-radius: 15px;
+}
+
+td:first-child{
+    background-color: white;
+    border: none;
+}
+
+tr:last-child td:nth-child(2){
+    border-bottom-left-radius: 15px;
+}
+
+tr:last-child td:nth-child(11){
+    border-bottom-right-radius: 15px;
+}
+
+
+.slidebarIcon{
+    font-size: 40px;
+}
+    
