@@ -5,10 +5,10 @@ const Form = () => {
     <>
         <div className='container-fluid'>
         <div className='row mt-3'>
-          <div className='col-lg-6  rounded-start'>
+          {/* <div className='col-lg-6  rounded-start'>
             <img src="./images/formSideImg.jpg" className='d-block h-100 w-100' alt="img" />
-          </div>
-          <div className='col-lg-6 bg-light p-4 rounded-end '>
+          </div> */}
+          <div className='col-lg-12 bg-light p-4 rounded-end '>
             <h1 className='h1 text-primary fw-bold mb-2 mt-2 p-2'>Registration Form</h1>
             <form className='row g-3' action="">
               <div className='col-lg-4'>

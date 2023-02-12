@@ -35,18 +35,18 @@
 } */
 
 
-.form-input{
+/* .form-input{
   border-radius: 20px;
   box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
   /* box-shadow: 8px 8px 8px #cbced1 inset, -8px -8px 8px white inset; */
-  outline: none;
+  /* outline: none;
   width: 100%;
   border: none;
   padding: 10px 15px 10px 10px;
-}
+} */
 
 
-.form-heading{
+/* .form-heading{
   margin: 15% 0% 10% 0%;
 }
 
@@ -66,9 +66,9 @@
   margin: 1% 8%;
   position: absolute;
   box-shadow:5px 10px 8px #888888;
-}
+} */
 
-.form-forget{
+/* .form-forget{
   text-decoration: none;
   color: #6b706c;
 }
@@ -87,11 +87,10 @@
   background: url('./../public/images/2.jpg');
 } */
 
-.seccon{
+/* .seccon{
   box-shadow: 20px snow;
-}
-/* Admin  */
-* {
+} */
+/* Admin   {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -111,7 +110,7 @@ place-items: center;
 }
 
 /* Sidebar */
-.sidebar {
+/* .sidebar {
   background: rgb(6, 15, 85);
   color: white;
   height: 100vh;
@@ -204,12 +203,12 @@ place-items: center;
   padding-left: 20px;
   border-bottom: #fff 0.5px solid;
 }
-
+ */
 
 
 /* Dashboard CSS */
 
-
+/* 
 .logodashboard{
   height: 113px;
   width: 140px;
@@ -224,4 +223,9 @@ place-items: center;
   align-items: center;
   margin: 10px 0;
   height: 30px;
-}
+}  */
+
+
+
+/* Login  */
+

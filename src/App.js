@@ -1,24 +1,19 @@
 import React from 'react'
-import Login from './Login'
+import Login from './components/Login'
 import Form from './components/Form'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import "./App.css"
-import SideBar from './components/Sidebar/SideBar'
-import Dashboard from './pages/Dashboard'
-import Slidebar from './components/Slidebar'
+import Slidebar from './components/Sidebar/SideBar'
 import "./css/slidebar.css"
-
+import ProtectRoute from './Route/ProtectRoute'
+import AllRoute from './Route/AllRoute'
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         {/* <SideBar /> */}
-        <Routes>
-          <Route path='/' element={<Slidebar />} />
-          <Route path='/form' element={<Form />} />
-          <Route path='/login' element={<Login />} />
-        </Routes>
+        <AllRoute />
       </BrowserRouter>
       {/* <Login></Login>
       <Form></Form> */}
