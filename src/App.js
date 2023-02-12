@@ -1,22 +1,18 @@
 import React from 'react'
-import Login from './components/Login'
-import Form from './components/Form'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import "./App.css"
-import Slidebar from './components/Sidebar/SideBar'
 import "./css/slidebar.css"
-import ProtectRoute from './Route/ProtectRoute'
 import AllRoute from './Route/AllRoute'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        {/* <SideBar /> */}
         <AllRoute />
+        <ToastContainer />
       </BrowserRouter>
-      {/* <Login></Login>
-      <Form></Form> */}
     </>
   )
 }
