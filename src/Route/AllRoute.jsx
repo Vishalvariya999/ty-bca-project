@@ -6,6 +6,7 @@ import AddManager from '../pages/AddManager'
 import Login from '../components/Login'
 import ProtectRoute from './ProtectRoute'
 import Dashboard from '../components/MainDashBoard'
+import AddMenager from '../components/AddManeger'
 
 
 const AllRoute = () => {
@@ -20,7 +21,7 @@ const AllRoute = () => {
     },
     {
         path: "/maneger",
-        element: <Slidebar> <ProtectRoute><Form /></ProtectRoute> </Slidebar> ,
+        element: <Slidebar> <ProtectRoute><AddMenager /></ProtectRoute> </Slidebar> ,
         children: [
             {
                 path: "/maneger/addmaneger",
