@@ -7,6 +7,7 @@ import Login from '../components/Login'
 import ProtectRoute from './ProtectRoute'
 import Dashboard from '../components/MainDashBoard'
 import AddMenager from '../components/AddManeger'
+import AddClient from '../components/AddClient'
 
 
 const AllRoute = () => {
@@ -32,7 +33,11 @@ const AllRoute = () => {
     {
         path: "employee",
         element: <Slidebar> <ProtectRoute><Form /></ProtectRoute> </Slidebar>
-    }
+    },
+    {
+        path: "/client",
+        element: <Slidebar> <ProtectRoute><AddClient /></ProtectRoute> </Slidebar>
+    },
   ])
   return data
 }
