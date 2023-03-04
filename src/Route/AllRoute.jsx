@@ -8,6 +8,7 @@ import ProtectRoute from './ProtectRoute'
 import Dashboard from '../components/MainDashBoard'
 import AddMenager from '../components/AddManeger'
 import AddClient from '../components/AddClient'
+import ShowManeger from '../components/ShowManeger'
 
 
 const AllRoute = () => {
@@ -33,6 +34,10 @@ const AllRoute = () => {
     {
         path: "employee",
         element: <Slidebar> <ProtectRoute><Form /></ProtectRoute> </Slidebar>
+    },
+    {
+        path: "showmaneger",
+        element: <Slidebar> <ProtectRoute><ShowManeger /></ProtectRoute> </Slidebar>
     },
     {
         path: "/client",

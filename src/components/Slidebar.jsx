@@ -63,7 +63,12 @@ let nav = document.querySelector(".navcontainer");
 							<h6>Manager</h6>
 						</div>
 					</NavLink>
-					
+					<NavLink className="text-dark fw-bold text-decoration-none" to={'/showmaneger'}>
+						<div className="option2 nav-option">
+							<FaUsers  className='fs-5' />
+							<h6>Show Manager</h6>
+						</div>
+					</NavLink>
 					<NavLink className="text-dark fw-bold text-decoration-none" to={'/employee'}>
 						<div className="option2 nav-option">
 							<FaUsers className='fs-5' />
