@@ -6,6 +6,9 @@ const data = {
   mobile: "",
   birth_date: "",
   role: "",
+  salary: "",
+  gender: "",
+  langauge: "",
 };
 
 const initialData = {
@@ -14,6 +17,7 @@ const initialData = {
   LoginInputData: [],
   data: [],
   getManeger: [],
+  getEmployee: [],
   loading: true,
   singleUser: [],
 };
@@ -49,6 +53,11 @@ const LoginEx = (state = initialData, action) => {
       return {
         ...state,
         singleUser: action.payload,
+      };
+    case "GET_EMPLOYEE":
+      return {
+        ...state,
+        getEmployee: action.payload,
       };
     default:
       return state;

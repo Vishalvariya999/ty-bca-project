@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react'
-import { BallTriangle } from 'react-loader-spinner'
+import { BallTriangle, Bars, ThreeDots } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteManeger, editManeger, getManegers } from '../Redux/Action/Action'
-import {FiEdit,FiTrash2} from 'react-icons/fi'
+import { getEmployees } from '../Redux/Action/Action'
 
-const ShowManeger = () => {
+const ShowEmployee = () => {
     const dispatch = useDispatch()
-    const {getManeger, loading,singleUser} = useSelector((stat) => stat.LoginEx)
+    const {getEmployee, loading,singleUser} = useSelector((stat) => stat.LoginEx)
     useEffect(() => {
-        dispatch(getManegers())
+        dispatch(getEmployees())
     },[])
-    const handleDelete = (id) => {
-        dispatch(deleteManeger(id))
-    }
-    const handleEdit = (key) => {
-        dispatch(dispatch(editManeger(key)))
-    }
+    // const handleDelete = (id) => {
+    //     dispatch(deleteManeger(id))
+    // }
+    // const handleEdit = (key) => {
+    //     dispatch(dispatch(editManeger(key)))
+    // }
   return (
     <>
-        <div className="table-responsive">
+      <div className="table-responsive">
         <table className='table table-striped table-border'>
             <thead className='table table-dark'>
                 <tr>
@@ -34,7 +33,7 @@ const ShowManeger = () => {
             </thead>
             <tbody>
                 {
-                    getManeger.map((data)=>{
+                    getEmployee.map((data)=>{
                         return<tr key={data.id}>
                             <td>{data.name}</td>
                             <td>{data.email}</td>
@@ -43,10 +42,10 @@ const ShowManeger = () => {
                             <td>{data.birth_date}</td>
                             <td>{data.status}</td>
                             <td>{data.role}</td>    
-                            <td> <FiEdit className='fs-3 text-success' onClick={() => handleEdit(data?.email)}/>
+                            {/* <td> <FiEdit className='fs-3 text-success' onClick={() => handleEdit(data?.email)}/> */}
                             {/* <FiTrash2 className='fs-3 text-danger mx-2 cursur-pointer' onClick={() => handleDelete(data?.id)}/> */}
-                            <button className='btn btn-danger mx-2' onClick={() => handleDelete(data?.id)}>Delete</button>
-                            </td>
+                            {/* <button className='btn btn-danger mx-2' onClick={() => handleDelete(data?.id)}>Delete</button>
+                            </td> */}
                         </tr>
                     })
                 }
@@ -54,10 +53,10 @@ const ShowManeger = () => {
         </table>
         </div>
         {
-            loading && <> <BallTriangle /> <h1>Loading Data...</h1> </>
+            loading && <> <ThreeDots /> <h3>Loading Data...</h3> </>
         }
     </>
   )
 }
 
-export default ShowManeger
+export default ShowEmployee

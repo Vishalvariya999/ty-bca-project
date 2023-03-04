@@ -22,9 +22,9 @@ const AddClient = () => {
               <div className='col-lg-12'>
               <FormInput element="input" label="Address : " type="text" nameclass="form-control" place="Enter Your Address " name="address"/>
               </div>
-              <div className='col-lg-6'>
+             
               <FormInput element="input" label="City : " type="text" nameclass="form-control" place="Enter Your City " name="city"/>
-              </div>
+            
               <div className='col-lg-6'>
               <FormInput element="input" label="Pincode : " type="text" nameclass="form-control" place="Enter Your Pincode " name="pincode"/>
               </div> 

@@ -1,7 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addEmployee } from '../Redux/Action/Action'
 import FormInput from './FormInput'
 
 const Form = () => {
+  const dispatch = useDispatch()
+  const handleClick = (e) =>{
+    e.preventDefault()
+    dispatch(addEmployee())
+  }
   return (
     <>
       <div className='container-fluid'>
@@ -12,31 +19,28 @@ const Form = () => {
               <div className='col-lg-12'>
                 <FormInput element="input" label="Name : " type="text" nameclass="form-control" place="Enter Name " name="name"/>
               </div>
+              {/* <div className='col-lg-12'>      */}
               <div className='col-lg-12'>
-                <label htmlFor="" className='form-label'>Gender :</label>
-                <div className="form-check form-check-inline mx-2">
-                  <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                  <label className="form-check-label" htmlFor="inlineRadio1">Male</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                  <label classNam="form-check-label" htmlFor="inlineRadio2">Female</label>
-                </div>
+               <FormInput element="select" name="gender" label="Gender" nameclass="form-select" op={["Select-Gender", "Male", "Female"]}/>
               </div>
+              {/* </div> */}
               <div className='col-lg-6'>
               <FormInput element="input" label="Email " type="email" nameclass="form-control" place="Enter Email Address " name="email"/>
               </div>
               <div className='col-lg-6'>
-              <FormInput element="input" label="Phone" type="text" nameclass="form-control" place="Enter Phone Number " name="phno"/>
+              <FormInput element="input" label="Password" type="password" nameclass="form-control"  name="password" place="Enter Password"/>
+              </div>
+              <div className='col-lg-6'>
+              <FormInput element="input" label="Phone" type="text" nameclass="form-control" place="Enter Phone Number " name="mobile"/>
               </div>
               <div className='col-lg-12'>
               <FormInput element="input" label="Address : " type="text" nameclass="form-control" place="Enter Your Address " name="address"/>
               </div>
               <div className='col-lg-6'>
-               <FormInput element="select" label="Role" nameclass="form-select" op={["Select-Role", "Maneger", "Employee"]}/>
+               <FormInput element="select" name="role" label="Role" nameclass="form-select" op={["Select-Role", "Maneger", "Employee"]}/>
               </div>
               <div className='col-lg-6'>
-              <FormInput element="input" label="Date" type="date" nameclass="form-control"  name="date"/>
+              <FormInput element="input" label="Date" type="date" nameclass="form-control"  name="birth_date"/>
               </div>
               <div className='col-lg-6'>
               <FormInput element="input" label="Salary" type="text" nameclass="form-control"  name="salary" place="Enter Salary"/>
@@ -44,9 +48,10 @@ const Form = () => {
               <div className='col-lg-6'>
               <FormInput element="input" label="Langauges" type="text" nameclass="form-control"  name="langauge" place="Enter Langauges"/>
               </div>
+             
             
               <div className='col-lg-12 text-center'>
-                <button type='button' className='btn btn-md btn-primary mt-3'>Submit</button>
+                <button type='button' className='btn btn-md btn-primary mt-3'  onClick={handleClick}>Submit</button>
               </div>
             </form>
           </div>

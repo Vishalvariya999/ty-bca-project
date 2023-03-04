@@ -98,36 +98,30 @@ export const getManegers = () => {
   };
 };
 
-// export const deleteManeger = (deleteid) => {
-//   return async (dispatch, getState) => {
-//     const token = localStorage.getItem("token");
-//     console.log(" JSON.parse(token),", JSON.parse(token));
-//     await axios
-//       .delete(
-//         "http://localhost:8080/admin/deleteManager",
-//         {
-//           id: deleteid,
-//         },
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: {
-//               Token:
-//                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE2Nzc3NzM3ODEsImV4cCI6MTY3NzgwMzc4MX0.dEiqdI9WhHntqq5x8mP398FRcdgJ7tXUZCBwhawk2QQ",
-//             },
-//           },
-//         }
-//       )
-//       .then((res) => {
-//         console.log("res", res);
-//         if (res.status === 200) {
-//           toast.success(res.data.message);
-//         } else {
-//           toast.error(res.message);
-//         }
-//       });
-//   };
-// };
+export const deleteManeger = (deleteid) => async (dispatch, getState) => {
+  const token = localStorage.getItem("token");
+  console.log(" JSON.parse(token),", JSON.parse(token));
+  await axios
+    .delete(
+      "http://localhost:8080/admin/deleteManager",
+      {
+        id: deleteid,
+      },
+      {
+        headers: {
+          Authorization: `bearer ${JSON.parse(token)}`,
+        },
+      }
+    )
+    .then((res) => {
+      console.log("res", res);
+      if (res.status === 200) {
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.message);
+      }
+    });
+};
 
 export const editManeger = (key) => {
   return async (dispatch, getState) => {
@@ -145,6 +139,68 @@ export const editManeger = (key) => {
           toast.success(res.data.message);
           dispatch({
             type: "GET_SINGLE_MANEGER",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const addEmployee = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://localhost:8080/admin/addEmployee",
+        {
+          name: state.LoginEx.input.name,
+          email: state.LoginEx.input.email,
+          mobile: state.LoginEx.input.mobile,
+          address: state.LoginEx.input.address,
+          password: state.LoginEx.input.password,
+          birth_date: state.LoginEx.input.birth_date,
+          salary: state.LoginEx.input.salary,
+          role: state.LoginEx.input.role,
+          gender: state.LoginEx.input.gender,
+          language: state.LoginEx.input.langauge,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(token),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getEmployees = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getEmployee", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_EMPLOYEE",
             payload: res?.data?.data,
           });
         } else {

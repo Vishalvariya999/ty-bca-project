@@ -75,6 +75,12 @@ let nav = document.querySelector(".navcontainer");
 							<h6>Employee</h6>
 						</div>
 					</NavLink>
+					<NavLink className="text-dark fw-bold text-decoration-none" to={'/showemplaoyee'}>
+						<div className="option2 nav-option">
+							<FaUsers className='fs-5' />
+							<h6>Show Employee</h6>
+						</div>
+					</NavLink>
 					<NavLink className="text-dark fw-bold text-decoration-none" to={'/client'}>
 						<div className="option2 nav-option">
 							<BiUserCircle className='fs-5' />
