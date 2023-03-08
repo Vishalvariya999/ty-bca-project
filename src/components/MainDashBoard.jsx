@@ -72,14 +72,15 @@ const MainDashBoard = () => {
                     </div>
                     <div className="report-body">
                         <div className="table-responsive">
-                            <table className='table table-striped table-bordered'>
+                            <table className='table  table-bordered'>
                                 <thead className='table table-primary'>
                                     <tr>
                                         <th>Name</th>
                                         <th>E-mail</th>
                                         <th>Mobile</th>
                                         <th>Address</th>
-                                        <th>BirthDate</th>
+                                        <th>Birth Date</th>
+                                        <th>Date of Joining</th>
                                         <th>Status</th>
                                         <th>Role</th>
 
@@ -94,6 +95,7 @@ const MainDashBoard = () => {
                                                 <td>{data.mobile}</td>
                                                 <td>{data.address}</td>
                                                 <td>{data.birth_date}</td>
+                                                <td>{data.date_of_joining}</td>
                                                 <td>{data.status}</td>
                                                 <td>{data.role}</td>
                                             </tr>

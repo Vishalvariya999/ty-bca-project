@@ -349,3 +349,145 @@ export const getProject = () => {
       });
   };
 };
+
+export const addHr = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://localhost:8080/admin/addHr",
+        {
+          name: state.LoginEx.input.name,
+          email: state.LoginEx.input.email,
+          mobile: state.LoginEx.input.mobile,
+          address: state.LoginEx.input.address,
+          password: state.LoginEx.input.password,
+          birth_date: state.LoginEx.input.birth_date,
+          role: "HR",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(token),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getLeave = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getLeave", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_LEAVE",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getHrDetail = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getHr", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_HR",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getProjectDetail = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getProject", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_PROJECT_DETAIL",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const giveTask = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    console.log("state.LoginEx.input.file", state.LoginEx.input.file);
+    await axios
+      .post(
+        "http://localhost:8080/admin/giveTask",
+        {
+          name: state.LoginEx.input.name,
+          description: state.LoginEx.input.description,
+          from_date: state.LoginEx.input.from_date,
+          to_date: state.LoginEx.input.to_date,
+          title: state.LoginEx.input.title,
+          role: state.LoginEx.input.role,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};

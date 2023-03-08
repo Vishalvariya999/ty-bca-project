@@ -1,5 +1,4 @@
 import React from 'react'
-import { Accordion } from 'react-bootstrap';
 import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 import { BiAnalyse, BiCog, BiUserCircle } from 'react-icons/bi';
 import { FaMicrosoft, FaPowerOff, FaHome, FaFistRaised, FaAward, FaUsers, FaRupeeSign, FaUserPlus } from "react-icons/fa";
@@ -73,10 +72,16 @@ const Slidebar = ({ children }) => {
 										<h6>Show Manager</h6>
 									</div>
 								</NavLink>
-								<NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/AddHR'}>
 									<div className="option2 nav-option">
 										<BiCog className='fs-5' />
 										<h6>Add HR </h6>
+									</div>
+								</NavLink>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/showhr'}>
+									<div className="option2 nav-option">
+										<BiCog className='fs-5' />
+										<h6>Show HR </h6>
 									</div>
 								</NavLink>
 								<NavLink className="text-dark fw-bold text-decoration-none" to={'/showemplaoyee'}>
@@ -97,10 +102,22 @@ const Slidebar = ({ children }) => {
 										<h6>Projects</h6>
 									</div>
 								</NavLink>
-								<NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/showproject'}>
+									<div className="option2 nav-option">
+										<AiOutlineFundProjectionScreen className='fs-5' />
+										<h6>Show Projects</h6>
+									</div>
+								</NavLink>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/showleave'}>
 									<div className="option2 nav-option">
 										<BiAnalyse className='fs-5' />
 										<h6>Leave Report </h6>
+									</div>
+								</NavLink>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/task'}>
+									<div className="option2 nav-option">
+										<BiAnalyse className='fs-5' />
+										<h6>Give Task </h6>
 									</div>
 								</NavLink>
 								<NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
@@ -110,13 +127,13 @@ const Slidebar = ({ children }) => {
 									</div>
 								</NavLink>
 
-								<NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/ap'}>
 									<div className="option2 nav-option">
 										<FaFistRaised className='fs-5' />
 										<h6>Attendence</h6>
 									</div>
 								</NavLink>
-								<NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+								<NavLink className="text-dark fw-bold text-decoration-none" to={'/psss'}>
 									<div className="option2 nav-option">
 										<FaAward className='fs-5' />
 										<h6>Awards</h6>

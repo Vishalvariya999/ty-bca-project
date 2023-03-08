@@ -14,6 +14,11 @@ import AddProject from '../components/AddProject'
 import HrSlidebar from '../components/HrSilideBar'
 import ManegerSlidebar from '../components/ManagerDashboard'
 import ProjectDetail from '../components/ProjectDetail'
+import AddHR from '../components/AddHR'
+import ShowLeave from '../components/ShowLeave'
+import ShowHrDetail from '../components/ShowHrDetail'
+import ShowProjectDetail from '../components/ShowProject'
+import GiveTask from '../components/GiveTask'
 
 
 const AllRoute = () => {
@@ -48,6 +53,10 @@ const AllRoute = () => {
             element: <Slidebar> <ProtectRoute><ShowEmployee /></ProtectRoute> </Slidebar>
         },
         {
+            path: "AddHR",
+            element: <Slidebar> <ProtectRoute><AddHR /></ProtectRoute> </Slidebar>
+        },
+        {
             path: "addproject",
             element: <Slidebar> <ProtectRoute><AddProject /></ProtectRoute> </Slidebar>
         },
@@ -56,8 +65,24 @@ const AllRoute = () => {
             element: <Slidebar> <ProtectRoute><AddClient /></ProtectRoute> </Slidebar>
         },
         {
+            path: "/showleave",
+            element: <Slidebar> <ProtectRoute><ShowLeave /></ProtectRoute> </Slidebar>
+        },
+        {
+            path: "/showhr",
+            element: <Slidebar> <ProtectRoute><ShowHrDetail /></ProtectRoute> </Slidebar>
+        },
+        {
+            path: "/showproject",
+            element: <Slidebar> <ProtectRoute><ShowProjectDetail /></ProtectRoute> </Slidebar>
+        },
+        {
+            path: "/task",
+            element: <Slidebar> <ProtectRoute><GiveTask /></ProtectRoute> </Slidebar>
+        },
+        {
             path: "*",
-            element: <><h2 className='text-center text-danger'>Page Not Found</h2></>
+            element: <><Slidebar ><h2 className='text-center text-danger'>Page Not Found</h2></Slidebar></>
         }
     ])
 

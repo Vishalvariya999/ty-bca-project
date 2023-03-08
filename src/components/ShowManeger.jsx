@@ -42,7 +42,8 @@ const ShowManeger = () => {
                                     <th>E-mail</th>
                                     <th>Mobile</th>
                                     <th>Address</th>
-                                    <th>BirthDate</th>
+                                    <th>Birth Date</th>
+                                    {/* <th>Date of Joining</th> */}
                                     <th>Status</th>
                                     <th>Role</th>
                                     <th>Modify</th>
@@ -57,6 +58,7 @@ const ShowManeger = () => {
                                             <td>{data.mobile}</td>
                                             <td>{data.address}</td>
                                             <td>{data.birth_date}</td>
+                                            {/* <td>{data.date_of_joining}</td> */}
                                             <td>{data.status}</td>
                                             <td>{data.role}</td>
                                             <td>

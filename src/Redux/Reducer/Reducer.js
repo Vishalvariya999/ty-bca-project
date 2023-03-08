@@ -14,6 +14,8 @@ const data = {
   client_name: "",
   from_date: "",
   to_date: "",
+  title: "",
+  description: "",
 };
 
 const initialData = {
@@ -27,6 +29,9 @@ const initialData = {
   singleUser: [],
   singleEmployee: [],
   getProjects: [],
+  leaveDetail: [],
+  hrDetail: [],
+  projectDetail: [],
 };
 const LoginEx = (state = initialData, action) => {
   switch (action.type) {
@@ -76,6 +81,24 @@ const LoginEx = (state = initialData, action) => {
       return {
         ...state,
         getProjects: action.payload,
+        loading: false,
+      };
+    case "GET_LEAVE":
+      return {
+        ...state,
+        leaveDetail: action.payload,
+        loading: false,
+      };
+    case "GET_HR":
+      return {
+        ...state,
+        hrDetail: action.payload,
+        loading: false,
+      };
+    case "GET_PROJECT_DETAIL":
+      return {
+        ...state,
+        projectDetail: action.payload,
         loading: false,
       };
     default:
