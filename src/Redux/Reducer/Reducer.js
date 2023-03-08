@@ -9,6 +9,11 @@ const data = {
   salary: "",
   gender: "",
   langauge: "",
+  file: "",
+  project_name: "",
+  client_name: "",
+  from_date: "",
+  to_date: "",
 };
 
 const initialData = {
@@ -20,6 +25,8 @@ const initialData = {
   getEmployee: [],
   loading: true,
   singleUser: [],
+  singleEmployee: [],
+  getProjects: [],
 };
 const LoginEx = (state = initialData, action) => {
   switch (action.type) {
@@ -58,6 +65,18 @@ const LoginEx = (state = initialData, action) => {
       return {
         ...state,
         getEmployee: action.payload,
+        loading: false,
+      };
+    case "GET_SINGLE_EMPLOYEE":
+      return {
+        ...state,
+        singleEmployee: action.payload,
+      };
+    case "GET_PROJECT":
+      return {
+        ...state,
+        getProjects: action.payload,
+        loading: false,
       };
     default:
       return state;

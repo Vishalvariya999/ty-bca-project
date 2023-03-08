@@ -12,9 +12,12 @@ export const LoginData = (name, value, navigate) => {
       headers: { "Content-Type": "application/json" },
     });
     const res = await data.json();
-
+    console.log("res", res);
     if (res.success) {
+      localStorage.setItem("role", res?.data[0]?.role);
+      dispatch(resetForm());
       localStorage.setItem("token", JSON.stringify(res?.data[1]?.Token));
+      localStorage.setItem("Login", true);
       toast.success(res.message);
       navigate("/");
     } else {
@@ -35,7 +38,7 @@ export const InputData = (name, value) => {
     },
   };
 };
-export const addManeger = () => {
+export const addManeger = (navigate) => {
   return async (dispatch, getState) => {
     const state = getState();
     const token = localStorage.getItem("token");
@@ -49,7 +52,7 @@ export const addManeger = () => {
           address: state.LoginEx.input.address,
           password: state.LoginEx.input.password,
           birth_date: state.LoginEx.input.birth_date,
-          role: state.LoginEx.input.role,
+          role: "MANAGER",
         },
         {
           headers: {
@@ -59,12 +62,13 @@ export const addManeger = () => {
         }
       )
       .then((res) => {
+        console.log("res --", res);
         if (res.status === 200) {
           toast.success(res.data.message);
           dispatch(resetForm());
-          // navigate("/");
+          navigate("/showmaneger");
         } else {
-          toast.error(res.message);
+          toast.error(res.data.message);
         }
       });
   };
@@ -82,10 +86,11 @@ export const getManegers = () => {
       .get("http://localhost:8080/admin/getManager", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: JSON.parse(token),
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       })
       .then((res) => {
+        console.log("res", res);
         if (res.status === 200) {
           dispatch({
             type: "GET_MANEGER",
@@ -100,22 +105,19 @@ export const getManegers = () => {
 
 export const deleteManeger = (deleteid) => async (dispatch, getState) => {
   const token = localStorage.getItem("token");
-  console.log(" JSON.parse(token),", JSON.parse(token));
+  console.log(" JSON.parse(token),", `Bearer ${JSON.parse(token)}`);
   await axios
-    .delete(
-      "http://localhost:8080/admin/deleteManager",
-      {
-        id: deleteid,
+    .delete("http://localhost:8080/admin/deleteManager", {
+      data: { id: deleteid },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(token)}`,
       },
-      {
-        headers: {
-          Authorization: `bearer ${JSON.parse(token)}`,
-        },
-      }
-    )
+    })
     .then((res) => {
       console.log("res", res);
       if (res.status === 200) {
+        dispatch(getManegers());
         toast.success(res.data.message);
       } else {
         toast.error(res.message);
@@ -123,27 +125,51 @@ export const deleteManeger = (deleteid) => async (dispatch, getState) => {
     });
 };
 
-export const editManeger = (key) => {
+export const getSingleManeger = (key) => {
   return async (dispatch, getState) => {
+    console.log("key", key);
     const state = getState();
     const token = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:8080/admin/getManager?searchKey=${key}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: JSON.parse(token),
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success(res.data.message);
-          dispatch({
-            type: "GET_SINGLE_MANEGER",
-            payload: res?.data?.data,
-          });
-        } else {
-          toast.error(res.message);
+      .get(
+        `http://localhost:8080/admin/getManager?column=id&searchKey=${key}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(token),
+          },
         }
+      )
+      .then((res) => {
+        dispatch({
+          type: "GET_SINGLE_MANEGER",
+          payload: res?.data?.data,
+        });
+      });
+  };
+};
+
+export const getSingleEmployee = (key) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    console.log("key", key);
+    const token = localStorage.getItem("token");
+    await axios
+      .get(
+        `http://localhost:8080/admin/getEmployee?column=id&searchKey=${key}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(token),
+          },
+        }
+      )
+      .then((res) => {
+        console.log("res", res);
+        dispatch({
+          type: "GET_SINGLE_EMPLOYEE",
+          payload: res?.data?.data,
+        });
       });
   };
 };
@@ -201,6 +227,120 @@ export const getEmployees = () => {
         if (res.status === 200) {
           dispatch({
             type: "GET_EMPLOYEE",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const deleteEmployee = (deleteid) => async (dispatch, getState) => {
+  const token = localStorage.getItem("token");
+  await axios
+    .delete("http://localhost:8080/admin/removeEmployee", {
+      data: { id: deleteid },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      },
+    })
+    .then((res) => {
+      console.log("res", res);
+      if (res.status === 200) {
+        dispatch(getEmployees());
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.message);
+      }
+    });
+};
+
+export const addClient = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://localhost:8080/admin/addClient",
+        {
+          client_name: state.LoginEx.input.name,
+          client_email: state.LoginEx.input.email,
+          client_mobile: state.LoginEx.input.mobile,
+          client_address: state.LoginEx.input.address,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: JSON.parse(token),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
+  };
+};
+
+export const addProject = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    console.log("state.LoginEx.input.file", state.LoginEx.input.file);
+    await axios
+      .post(
+        "http://localhost:8080/admin/addProject",
+        {
+          project_image: state.LoginEx.input.file,
+          project_name: state.LoginEx.input.project_name,
+          client_name: state.LoginEx.input.client_name,
+          from_date: state.LoginEx.input.from_date,
+          to_date: state.LoginEx.input.to_date,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getProject = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getProject", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_PROJECT",
             payload: res?.data?.data,
           });
         } else {

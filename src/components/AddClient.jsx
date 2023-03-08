@@ -1,7 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addClient } from '../Redux/Action/Action'
 import FormInput from './FormInput'
 
 const AddClient = () => {
+  const dispatch = useDispatch()
+  const handleSubmit = () => {
+    dispatch(addClient())
+  }
   return (
     <>
         <div className='container-fluid'>
@@ -17,19 +23,14 @@ const AddClient = () => {
               <FormInput element="input" label="Email " type="email" nameclass="form-control" place="Enter Email Address " name="email"/>
               </div>
               <div className='col-lg-6'>
-              <FormInput element="input" label="Phone" type="text" nameclass="form-control" place="Enter Phone Number " name="phno"/>
+              <FormInput element="input" label="Phone" type="text" nameclass="form-control" place="Enter Phone Number " name="mobile"/>
               </div>
               <div className='col-lg-12'>
               <FormInput element="input" label="Address : " type="text" nameclass="form-control" place="Enter Your Address " name="address"/>
               </div>
-             
-              <FormInput element="input" label="City : " type="text" nameclass="form-control" place="Enter Your City " name="city"/>
-            
-              <div className='col-lg-6'>
-              <FormInput element="input" label="Pincode : " type="text" nameclass="form-control" place="Enter Your Pincode " name="pincode"/>
-              </div> 
+                {/* <FormInput element="image" type="file" name="file" nameclass="form-control"/> */}
               <div className='col-lg-12 text-center'>
-                <button type='button' className='btn btn-md btn-primary mt-3'>Submit</button>
+                <button type='button' className='btn btn-md btn-primary mt-3' onClick={handleSubmit} >Submit</button>
               </div>
             </form>
           </div>
