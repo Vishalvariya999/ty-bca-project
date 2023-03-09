@@ -85,7 +85,24 @@ const ManegerSlidebar = ({ children }) => {
                                         <h6>Notice</h6>
                                     </div>
                                 </NavLink>
-
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showemplaoyee'}>
+                                    <div className="option2 nav-option">
+                                        <FaUsers className='fs-5' />
+                                        <h6>Task</h6>
+                                    </div>
+                                </NavLink>
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showLeavemaneger'}>
+                                    <div className="option2 nav-option">
+                                        <FaUsers className='fs-5' />
+                                        <h6>Leave Report</h6>
+                                    </div>
+                                </NavLink>
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showemplaoyee'}>
+                                    <div className="option2 nav-option">
+                                        <FaUsers className='fs-5' />
+                                        <h6>Employee Leave</h6>
+                                    </div>
+                                </NavLink>
                             </div>
                         </nav>
                     </div>

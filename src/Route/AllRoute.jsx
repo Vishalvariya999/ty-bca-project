@@ -19,6 +19,9 @@ import ShowLeave from '../components/ShowLeave'
 import ShowHrDetail from '../components/ShowHrDetail'
 import ShowProjectDetail from '../components/ShowProject'
 import GiveTask from '../components/GiveTask'
+import GetTaskHr from '../components/GetTaskHr'
+import ShowHrLeave from '../components/ShowHrLeave'
+import ShowManegerLeave from '../components/ShowManegerLeave'
 
 
 const AllRoute = () => {
@@ -100,6 +103,14 @@ const AllRoute = () => {
             element: <HrSlidebar> <ProtectRoute><Form /></ProtectRoute> </HrSlidebar>
         },
         {
+            path: "/getTask",
+            element: <HrSlidebar> <ProtectRoute><GetTaskHr /></ProtectRoute> </HrSlidebar>
+        },
+        {
+            path: "/showhrleave",
+            element: <HrSlidebar> <ProtectRoute><ShowHrLeave /></ProtectRoute> </HrSlidebar>
+        },
+        {
             path: "*",
             element: <Login />
         }
@@ -116,6 +127,10 @@ const AllRoute = () => {
         {
             path: "projectdetail",
             element: <ManegerSlidebar> <ProtectRoute><ProjectDetail /></ProtectRoute> </ManegerSlidebar>
+        },
+        {
+            path: "showLeavemaneger",
+            element: <ManegerSlidebar> <ProtectRoute><ShowManegerLeave /></ProtectRoute> </ManegerSlidebar>
         },
         {
             path: "*",

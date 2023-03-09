@@ -62,9 +62,13 @@ const ShowManeger = () => {
                                             <td>{data.status}</td>
                                             <td>{data.role}</td>
                                             <td>
-                                                <button className='btn btn-primary mx-2' onClick={() => handleView(data?.id)}>View</button>
+                                                <button className='btn btn-primary mx-2' onClick={() => handleView(data?.id)}>
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </button>
                                                 {/* <button className='btn btn-success mx-2' onClick={() => handleEdit(data?.email)}>Edit</button> */}
-                                                <button className='btn btn-danger mx-2' onClick={() => handleDelete(data?.id)}>Delete</button>
+                                                <button className='btn btn-danger mx-2' onClick={() => handleDelete(data?.id)}>
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     })

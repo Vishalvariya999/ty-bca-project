@@ -491,3 +491,108 @@ export const giveTask = () => {
       });
   };
 };
+
+export const getTaskHr = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/hr/getHrTask", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_TASK_DETAIL",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const acceptLeaveDetail = (id) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .put(
+        "http://localhost:8080/admin/updateLeave",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getLeave());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const declineLeaveDetail = (id) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .put(
+        "http://localhost:8080/admin/declineHMLeave",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getLeave());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const deletehr = (deleteid) => async (dispatch, getState) => {
+  const token = localStorage.getItem("token");
+  await axios
+    .delete("http://localhost:8080/admin/removeHr", {
+      data: { id: deleteid },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      },
+    })
+    .then((res) => {
+      console.log("res", res);
+      if (res.status === 200) {
+        dispatch(getHrDetail());
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.message);
+      }
+    });
+};

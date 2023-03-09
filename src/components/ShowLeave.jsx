@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLeave } from '../Redux/Action/Action'
+import Swal from 'sweetalert2'
+import { acceptLeaveDetail, declineLeaveDetail, getLeave } from '../Redux/Action/Action'
 
 const ShowLeave = () => {
     const dispatch = useDispatch()
@@ -9,7 +10,46 @@ const ShowLeave = () => {
     useEffect(() => {
         dispatch(getLeave())
     }, [])
-    console.log('leaveDetail', leaveDetail)
+    const acceptLeave = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Approved it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(acceptLeaveDetail(id))
+                Swal.fire(
+                    'Approved!',
+                    'Your Leave has been Approoved.',
+                    'success'
+                )
+            }
+        })
+    }
+    const declineLeave = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Decline it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(declineLeaveDetail(id))
+                Swal.fire(
+                    'Decline!',
+                    'Your Leave has been Decline.',
+                    'success'
+                )
+            }
+        })
+    }
     return (
         <>
             <div className="report-container">
@@ -25,9 +65,11 @@ const ShowLeave = () => {
                                     <th>Name</th>
                                     <th>Post</th>
                                     <th>Reason</th>
+                                    <th>Description</th>
                                     <th>Start-Date</th>
                                     <th>End-Date</th>
                                     <th>Status</th>
+                                    <th>Give Leave</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,9 +79,18 @@ const ShowLeave = () => {
                                             <td>{data.name}</td>
                                             <td>{data.post}</td>
                                             <td>{data.reason}</td>
+                                            <td>{data?.description}</td>
                                             <td>{data.start_date}</td>
                                             <td>{data.end_date}</td>
-                                            <td>{data.status}</td>
+                                            <td >{data.status}</td>
+                                            <td>
+                                                <button className='btn btn-success mx-3' onClick={() => acceptLeave(data?.id)}>
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                                <button className='btn   btn-danger' onClick={() => declineLeave(data?.id)}>
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     })
                                 }

@@ -32,6 +32,7 @@ const initialData = {
   leaveDetail: [],
   hrDetail: [],
   projectDetail: [],
+  taskDetail: [],
 };
 const LoginEx = (state = initialData, action) => {
   switch (action.type) {
@@ -99,6 +100,12 @@ const LoginEx = (state = initialData, action) => {
       return {
         ...state,
         projectDetail: action.payload,
+        loading: false,
+      };
+    case "GET_TASK_DETAIL":
+      return {
+        ...state,
+        taskDetail: action.payload,
         loading: false,
       };
     default:

@@ -67,7 +67,7 @@ const HrSlidebar = ({ children }) => {
                                         <h6>Add Employee</h6>
                                     </div>
                                 </NavLink>
-                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/task'}>
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/getTask'}>
                                     <div className="option2 nav-option">
                                         <FaUsers className='fs-5' />
                                         <h6> Task</h6>
@@ -85,7 +85,7 @@ const HrSlidebar = ({ children }) => {
                                         <h6>Awards</h6>
                                     </div>
                                 </NavLink>
-                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showhrleave'}>
                                     <div className="option2 nav-option">
                                         <FaAward className='fs-5' />
                                         <h6>Leave Report</h6>

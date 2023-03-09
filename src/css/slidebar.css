@@ -501,4 +501,30 @@ border-radius: 4px;
         width: 180px;
     }
     }
+
+    /* th:first-child{
+        background-color: white;
+    } */
+    
+    /* th:nth-child(1){
+       border-top-left-radius: 15px;
+    } 
+    
+    th:nth-child(8){
+        border-top-right-radius: 15px;
+    } */
+    
+     /* td:nth-child(1){
+        background-color: white;
+        border: none;
+    }
+    
+    tr:last-child td:nth-child(1){
+        border-bottom-left-radius: 15px;
+    }
+    
+    tr:last-child td:nth-child(9){
+        border-bottom-right-radius: 15px;
+    } */
+    
     
