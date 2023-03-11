@@ -28,13 +28,7 @@ const Form = () => {
                 <FormInput element="input" label="Email " type="email" nameclass="form-control" place="Enter Email Address " name="email" />
               </div>
               <div className='col-lg-6'>
-                <FormInput element="input" label="Password" type="password" nameclass="form-control" name="password" place="Enter Password" />
-              </div>
-              <div className='col-lg-6'>
                 <FormInput element="input" label="Phone" type="text" nameclass="form-control" place="Enter Phone Number " name="mobile" />
-              </div>
-              <div className='col-lg-12'>
-                <FormInput element="input" label="Address : " type="text" nameclass="form-control" place="Enter Your Address " name="address" />
               </div>
               <div className='col-lg-6'>
                 <FormInput element="select" name="role" label="Role" nameclass="form-select" op={["Select-Role", "Maneger", "Employee"]} />
@@ -48,8 +42,12 @@ const Form = () => {
               <div className='col-lg-6'>
                 <FormInput element="input" label="Langauges" type="text" nameclass="form-control" name="langauge" place="Enter Langauges" />
               </div>
-
-
+              <div className='col-lg-12'>
+                <FormInput element="input" label="Address : " type="text" nameclass="form-control" place="Enter Your Address " name="address" />
+              </div>
+              <div className='col-lg-12'>
+                <FormInput element="input" label="Password" type="password" nameclass="form-control" name="password" place="Enter Password" />
+              </div>
               <div className='col-lg-12 text-center'>
                 <button type='button' className='btn btn-md btn-primary mt-3' onClick={handleClick}>Submit</button>
               </div>

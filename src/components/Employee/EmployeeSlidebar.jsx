@@ -1,12 +1,9 @@
 import React from 'react'
-import { Accordion } from 'react-bootstrap';
-import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
-import { BiAnalyse, BiCog, BiUserCircle } from 'react-icons/bi';
 import { FaMicrosoft, FaBars, FaHome, FaFistRaised, FaAward, FaUsers, FaRupeeSign, FaUserPlus, FaPowerOff } from "react-icons/fa";
 import { NavLink, useNavigate } from 'react-router-dom';
 
 
-const HrSlidebar = ({ children }) => {
+const EmployeeSlidebar = ({ children }) => {
     const navigate = useNavigate()
     const toggleBtn = () => {
         let nav = document.querySelector(".navcontainer");
@@ -67,12 +64,6 @@ const HrSlidebar = ({ children }) => {
                                         <h6>Add Employee</h6>
                                     </div>
                                 </NavLink>
-                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showemplaoyee'}>
-                                    <div className="option2 nav-option">
-                                        <FaUsers className='fs-5' />
-                                        <h6>Show Employee</h6>
-                                    </div>
-                                </NavLink>
                                 <NavLink className="text-dark fw-bold text-decoration-none" to={'/getTask'}>
                                     <div className="option2 nav-option">
                                         <FaUsers className='fs-5' />
@@ -97,12 +88,6 @@ const HrSlidebar = ({ children }) => {
                                         <h6>Leave Report</h6>
                                     </div>
                                 </NavLink>
-                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/showhrleav'}>
-                                    <div className="option2 nav-option">
-                                        <FaAward className='fs-5' />
-                                        <h6>Employee Leave</h6>
-                                    </div>
-                                </NavLink>
 
                                 <NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
                                     <div className="option2 nav-option">
@@ -123,4 +108,4 @@ const HrSlidebar = ({ children }) => {
     )
 }
 
-export default HrSlidebar
+export default EmployeeSlidebar

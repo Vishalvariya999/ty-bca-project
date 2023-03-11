@@ -34,8 +34,8 @@ const ShowEmployee = () => {
                     {/* <button className="view">View All</button> */}
                 </div>
                 <div className="report-body">
-                    <div className="table-responsive">
-                        <table className='table table-striped table-bordered'>
+                    <div className="table-responsive rounded">
+                        <table className='table table-bordered '>
                             <thead className='table table-primary'>
                                 <tr>
                                     <th>Name</th>
@@ -78,7 +78,7 @@ const ShowEmployee = () => {
                                 <Modal.Title>
                                     <div className="d-flex justify-content-between">
                                         <div>
-                                            <img src="/images/profile-maneger.png" alt="profile" className='' style={{ height: "100px", width: "100px" }} />
+                                            <img src="/images/profile.jpeg" alt="profile" className='' style={{ height: "100px", width: "100px" }} />
                                         </div>
                                         <div>
                                             <h3 className='mx-5 my-4 text-success'>View Employee</h3>

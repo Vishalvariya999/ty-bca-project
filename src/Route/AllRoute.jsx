@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
 import Slidebar from '../components/Admin/Slidebar'
-import Form from '../components/Admin/AddEmployee'
+import Form from '../components/HR/AddEmployee'
 import Login from '../components/Common/Login'
 import ProtectRoute from './ProtectRoute'
 import Dashboard from '../components/Common/MainDashBoard'
@@ -23,6 +23,7 @@ import ShowHrLeave from '../components/HR/ShowHrLeave'
 import ShowManegerLeave from '../components/Manager/ShowManegerLeave'
 import ShowManagerTask from '../components/Manager/ShowManagerTask'
 import GetAllClient from '../components/Admin/GetAllClient'
+import EmployeeSlidebar from '../components/Employee/EmployeeSlidebar'
 
 
 const AllRoute = () => {
@@ -116,6 +117,10 @@ const AllRoute = () => {
             element: <HrSlidebar> <ProtectRoute><ShowHrLeave /></ProtectRoute> </HrSlidebar>
         },
         {
+            path: "showemplaoyee",
+            element: <HrSlidebar> <ProtectRoute><ShowEmployee /></ProtectRoute> </HrSlidebar>
+        },
+        {
             path: "*",
             element: <Login />
         }
@@ -146,12 +151,25 @@ const AllRoute = () => {
             element: <Login />
         }
     ])
+    const data4 = useRoutes([
+        {
+            path: "/",
+            element: <EmployeeSlidebar> <ProtectRoute><Dashboard /></ProtectRoute> </EmployeeSlidebar>
+        },
+        {
+            path: "/login",
+            element: <Login />
+        },
+
+    ])
     if (role === "SuperAdmin") {
         return data
     } else if (role === "HR") {
         return data2
-    } else {
+    } else if (role === "MANAGER") {
         return data3
+    } else {
+        return data4
     }
 }
 

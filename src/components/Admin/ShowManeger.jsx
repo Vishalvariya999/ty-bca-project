@@ -80,7 +80,7 @@ const ShowManeger = () => {
                                 <Modal.Title>
                                     <div className="d-flex justify-content-between">
                                         <div>
-                                            <img src="/images/profile-maneger.png" alt="profile" className='' style={{ height: "100px", width: "100px" }} />
+                                            <img src="/images/profile.jpeg" alt="profile" className='' style={{ height: "100px", width: "100px" }} />
                                         </div>
                                         <div>
                                             <h3 className='mx-5 my-4 text-success'>View Maneger</h3>

@@ -297,25 +297,25 @@ export const addProject = () => {
   return async (dispatch, getState) => {
     const state = getState();
     const token = localStorage.getItem("token");
-    console.log("state.LoginEx.input.file", state.LoginEx.input.file);
+    const formData = new FormData();
+    formData.append(
+      "project_image",
+      state.LoginEx.input.file.split("\\").pop()
+    );
+    formData.append("project_name", state.LoginEx.input.project_name);
+    formData.append("client_name", state.LoginEx.input.client_name);
+    // formData.append("from_date", state.LoginEx.input.from_date);
+    // formData.append("to_date", state.LoginEx.input.to_date);
+    console.log("formData", formData);
     await axios
-      .post(
-        "http://localhost:8080/admin/addProject",
-        {
-          project_image: state.LoginEx.input.file,
-          project_name: state.LoginEx.input.project_name,
-          client_name: state.LoginEx.input.client_name,
-          from_date: state.LoginEx.input.from_date,
-          to_date: state.LoginEx.input.to_date,
+      .post("http://localhost:8080/admin/addProject", formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${JSON.parse(token)}`,
-          },
-        }
-      )
+      })
       .then((res) => {
+        console.log("res ----", res);
         if (res.status === 200) {
           toast.success(res.data.message);
           dispatch(resetForm());
@@ -323,6 +323,9 @@ export const addProject = () => {
         } else {
           toast.error(res.message);
         }
+      })
+      .catch((err) => {
+        console.log("err", err);
       });
   };
 };

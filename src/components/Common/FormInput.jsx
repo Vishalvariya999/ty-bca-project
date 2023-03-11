@@ -14,7 +14,7 @@ const FormInput = (props) => {
 
   const element = props.element === "input" ?
     <div className='form-group'>
-      <label>{label}</label>
+      <label className='p-1'>{label}</label>
       <input type={type} name={name} disabled={disabled} className={nameclass} placeholder={place} value={input?.[name]} onChange={handleChange} />
     </div>
     :
@@ -32,7 +32,7 @@ const FormInput = (props) => {
       </>
       :
       <div className="form-group">
-        <label htmlFor="">{label}</label>
+        <label htmlFor="" className='p-1'>{label}</label>
         <select name={name} id="" onChange={handleChange} value={input?.[name]} className={nameclass}>
           {
             op.map((c) => {

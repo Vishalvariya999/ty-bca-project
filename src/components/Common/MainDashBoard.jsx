@@ -70,7 +70,7 @@ const MainDashBoard = () => {
                     <div className="report-header">
                         <h1 className="recent-Articles">Employes List</h1>
                         {
-                            role === "SuperAdmin" &&
+                            role === "SuperAdmin" || role === "HR" &&
                             <button className="view" onClick={() => navigate("/showemplaoyee")}>View All</button>
                         }
                     </div>
@@ -92,7 +92,7 @@ const MainDashBoard = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        getEmployee.map((data) => {
+                                        getEmployee?.slice(-3).map((data) => {
                                             return <tr key={data.id}>
                                                 <td>{data.name}</td>
                                                 <td>{data.email}</td>
