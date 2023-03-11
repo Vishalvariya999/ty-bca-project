@@ -16,6 +16,7 @@ const data = {
   to_date: "",
   title: "",
   description: "",
+  reason: "",
 };
 
 const initialData = {
@@ -33,6 +34,9 @@ const initialData = {
   hrDetail: [],
   projectDetail: [],
   taskDetail: [],
+  managerTask: [],
+  getAllLeave: [],
+  getClent: [],
 };
 const LoginEx = (state = initialData, action) => {
   switch (action.type) {
@@ -62,6 +66,12 @@ const LoginEx = (state = initialData, action) => {
         getManeger: action.payload,
         loading: false,
       };
+    case "GET_CLIENT":
+      return {
+        ...state,
+        getClent: action.payload,
+        loading: false,
+      };
     case "GET_SINGLE_MANEGER":
       return {
         ...state,
@@ -85,9 +95,14 @@ const LoginEx = (state = initialData, action) => {
         loading: false,
       };
     case "GET_LEAVE":
+      const login = localStorage.getItem("loginname");
+      const loginname = state?.input?.name;
       return {
         ...state,
         leaveDetail: action.payload,
+        input: {
+          name: login,
+        },
         loading: false,
       };
     case "GET_HR":
@@ -102,10 +117,22 @@ const LoginEx = (state = initialData, action) => {
         projectDetail: action.payload,
         loading: false,
       };
+    case "GET_ALL_LEAVE":
+      return {
+        ...state,
+        getAllLeave: action.payload,
+        loading: false,
+      };
     case "GET_TASK_DETAIL":
       return {
         ...state,
         taskDetail: action.payload,
+        loading: false,
+      };
+    case "GET_TASK_MANAGER":
+      return {
+        ...state,
+        managerTask: action.payload,
         loading: false,
       };
     default:

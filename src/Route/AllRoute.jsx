@@ -1,27 +1,28 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
-import Slidebar from '../components/Slidebar'
-import Form from '../components/Form'
-import AddManager from '../pages/AddManager'
-import Login from '../components/Login'
+import Slidebar from '../components/Admin/Slidebar'
+import Form from '../components/Admin/AddEmployee'
+import Login from '../components/Common/Login'
 import ProtectRoute from './ProtectRoute'
-import Dashboard from '../components/MainDashBoard'
-import AddMenager from '../components/AddManeger'
-import AddClient from '../components/AddClient'
-import ShowManeger from '../components/ShowManeger'
-import ShowEmployee from '../components/ShowEmployee'
-import AddProject from '../components/AddProject'
-import HrSlidebar from '../components/HrSilideBar'
-import ManegerSlidebar from '../components/ManagerDashboard'
-import ProjectDetail from '../components/ProjectDetail'
-import AddHR from '../components/AddHR'
-import ShowLeave from '../components/ShowLeave'
-import ShowHrDetail from '../components/ShowHrDetail'
-import ShowProjectDetail from '../components/ShowProject'
-import GiveTask from '../components/GiveTask'
-import GetTaskHr from '../components/GetTaskHr'
-import ShowHrLeave from '../components/ShowHrLeave'
-import ShowManegerLeave from '../components/ShowManegerLeave'
+import Dashboard from '../components/Common/MainDashBoard'
+import AddMenager from '../components/Admin/AddManeger'
+import AddClient from "../components/Admin/AddClient"
+import ShowManeger from '../components/Admin/ShowManeger'
+import ShowEmployee from '../components/Admin/ShowEmployee'
+import AddProject from '../components/Admin/AddProject'
+import HrSlidebar from '../components/HR/HrSilideBar'
+import ManegerSlidebar from '../components/Manager/ManagerDashboard'
+import ProjectDetail from '../components/Manager/ProjectDetail'
+import AddHR from '../components/Admin/AddHR'
+import ShowLeave from '../components/Admin/ShowLeave'
+import ShowHrDetail from '../components/HR/ShowHrDetail'
+import ShowProjectDetail from '../components/Admin/ShowProject'
+import GiveTask from '../components/Admin/GiveTask'
+import GetTaskHr from '../components/HR/GetTaskHr'
+import ShowHrLeave from '../components/HR/ShowHrLeave'
+import ShowManegerLeave from '../components/Manager/ShowManegerLeave'
+import ShowManagerTask from '../components/Manager/ShowManagerTask'
+import GetAllClient from '../components/Admin/GetAllClient'
 
 
 const AllRoute = () => {
@@ -80,6 +81,10 @@ const AllRoute = () => {
             element: <Slidebar> <ProtectRoute><ShowProjectDetail /></ProtectRoute> </Slidebar>
         },
         {
+            path: "/showclient",
+            element: <Slidebar> <ProtectRoute><GetAllClient /></ProtectRoute> </Slidebar>
+        },
+        {
             path: "/task",
             element: <Slidebar> <ProtectRoute><GiveTask /></ProtectRoute> </Slidebar>
         },
@@ -131,6 +136,10 @@ const AllRoute = () => {
         {
             path: "showLeavemaneger",
             element: <ManegerSlidebar> <ProtectRoute><ShowManegerLeave /></ProtectRoute> </ManegerSlidebar>
+        },
+        {
+            path: "showtask",
+            element: <ManegerSlidebar> <ProtectRoute><ShowManagerTask /></ProtectRoute> </ManegerSlidebar>
         },
         {
             path: "*",

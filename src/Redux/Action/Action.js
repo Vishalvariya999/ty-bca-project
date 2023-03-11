@@ -15,6 +15,7 @@ export const LoginData = (name, value, navigate) => {
     console.log("res", res);
     if (res.success) {
       localStorage.setItem("role", res?.data[0]?.role);
+      localStorage.setItem("loginname", res?.data[0]?.name);
       dispatch(resetForm());
       localStorage.setItem("token", JSON.stringify(res?.data[1]?.Token));
       localStorage.setItem("Login", true);
@@ -409,6 +410,30 @@ export const getLeave = () => {
   };
 };
 
+export const geAllLeaveDetail = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getAllLeave", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_ALL_LEAVE",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
 export const getHrDetail = () => {
   return async (dispatch, getState) => {
     const state = getState();
@@ -537,7 +562,7 @@ export const acceptLeaveDetail = (id) => {
         if (res.status === 200) {
           toast.success(res.data.message);
           dispatch(resetForm());
-          dispatch(getLeave());
+          dispatch(geAllLeaveDetail());
           // navigate("/");
         } else {
           toast.error(res.message);
@@ -567,7 +592,7 @@ export const declineLeaveDetail = (id) => {
         if (res.status === 200) {
           toast.success(res.data.message);
           dispatch(resetForm());
-          dispatch(getLeave());
+          dispatch(geAllLeaveDetail());
           // navigate("/");
         } else {
           toast.error(res.message);
@@ -590,6 +615,204 @@ export const deletehr = (deleteid) => async (dispatch, getState) => {
       console.log("res", res);
       if (res.status === 200) {
         dispatch(getHrDetail());
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.message);
+      }
+    });
+};
+
+export const addHrLeave = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://localhost:8080/hr/addLeave",
+        {
+          name: state.LoginEx.input.name,
+          start_date: state.LoginEx.input.from_date,
+          end_date: state.LoginEx.input.to_date,
+          reason: state.LoginEx.input.reason,
+          description: state.LoginEx.input.discription,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getLeave());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const addManagerLeave = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        "http://localhost:8080/manager/addLeave",
+        {
+          name: state.LoginEx.input.name,
+          start_date: state.LoginEx.input.from_date,
+          end_date: state.LoginEx.input.to_date,
+          reason: state.LoginEx.input.reason,
+          description: state.LoginEx.input.discription,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getLeave());
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getManagerTask = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/manager/getManagerTask", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_TASK_MANAGER",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const inProgressDetail = (id) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .put(
+        "http://localhost:8080/hr/giveTaskDetails",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getTaskHr());
+          dispatch(getManagerTask());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const complateTaskDetail = (id) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .put(
+        "http://localhost:8080/hr/giveTaskReport",
+        {
+          id: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.message);
+          dispatch(resetForm());
+          dispatch(getTaskHr());
+          dispatch(getManagerTask());
+          // navigate("/");
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const getClient = () => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const token = localStorage.getItem("token");
+    await axios
+      .get("http://localhost:8080/admin/getClient", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: JSON.parse(token),
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch({
+            type: "GET_CLIENT",
+            payload: res?.data?.data,
+          });
+        } else {
+          toast.error(res.message);
+        }
+      });
+  };
+};
+
+export const deleteClient = (deleteid) => async (dispatch, getState) => {
+  const token = localStorage.getItem("token");
+  await axios
+    .delete("http://localhost:8080/admin/removeClient", {
+      data: { id: deleteid },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      },
+    })
+    .then((res) => {
+      console.log("res", res);
+      if (res.status === 200) {
+        dispatch(getClient());
         toast.success(res.data.message);
       } else {
         toast.error(res.message);
