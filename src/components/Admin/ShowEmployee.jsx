@@ -6,6 +6,8 @@ import { deleteEmployee, editManeger, getEmployees, getSingleEmployee } from '..
 
 const ShowEmployee = () => {
     const dispatch = useDispatch()
+    const [search, setSearch] = useState("")
+    const [searchVal, setSearchVal] = useState("")
 
     const [hide, setHide] = useState(false)
 
@@ -26,12 +28,31 @@ const ShowEmployee = () => {
         handleShow()
         dispatch(dispatch(getSingleEmployee(key)))
     }
+    const searchData = (e) => {
+        setSearch(e.target.value)
+        const val = getEmployee.filter((c) => {
+            if (c?.name?.toLowerCase().includes(e.target.value.toLowerCase())) {
+                return c
+            }
+        })
+        setSearchVal(val)
+    }
+    const searchingData = search?.length ? searchVal : getEmployee
     return (
         <>
             <div className="report-container">
                 <div className="report-header">
                     <h1 className="recent-Articles">Employes List</h1>
-                    {/* <button className="view">View All</button> */}
+                    <div className='d-flex flex-row '>
+                        <div className='col-lg-10 mx-1'>
+                            <input type="text" className='form-control form-control-md' placeholder='Search' value={search} onChange={searchData} />
+                        </div>
+                        <div>
+                            <button id="search-button" type="button" class="btn btn-md btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="report-body">
                     <div className="table-responsive rounded">
@@ -50,7 +71,7 @@ const ShowEmployee = () => {
                             </thead>
                             <tbody>
                                 {
-                                    getEmployee.map((data) => {
+                                    searchingData.length ? searchingData.map((data) => {
                                         return <tr key={data.id}>
                                             <td>{data.name}</td>
                                             <td>{data.email}</td>
@@ -70,6 +91,12 @@ const ShowEmployee = () => {
                                             </td>
                                         </tr>
                                     })
+                                        :
+                                        <tr>
+                                            <td className='text-center text-danger fw-bold' colSpan={8}>
+                                                Data Not Found
+                                            </td>
+                                        </tr>
                                 }
                             </tbody>
                         </table>

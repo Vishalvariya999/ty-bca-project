@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ThreeDots } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
@@ -6,6 +6,8 @@ import { deletehr, getHrDetail } from '../../Redux/Action/Action'
 
 const ShowHrDetail = () => {
     const dispatch = useDispatch()
+    const [search, setSearch] = useState("")
+    const [searchVal, setSearchVal] = useState("")
     const { hrDetail, loading } = useSelector((stat) => stat.LoginEx)
     useEffect(() => {
         dispatch(getHrDetail())
@@ -31,13 +33,31 @@ const ShowHrDetail = () => {
         })
 
     }
-
+    const searchData = (e) => {
+        setSearch(e.target.value)
+        const val = hrDetail.filter((c) => {
+            if (c?.name?.toLowerCase().trim().includes(e.target.value.trim().toLowerCase())) {
+                return c
+            }
+        })
+        setSearchVal(val)
+    }
+    const searchingData = search?.length ? searchVal : hrDetail
     return (
         <>
             <div className="report-container">
                 <div className="report-header">
                     <h1 className="recent-Articles">HR List</h1>
-                    {/* <button className="view">View All</button> */}
+                    <div className='d-flex flex-row '>
+                        <div className='col-lg-10 mx-1'>
+                            <input type="text" className='form-control form-control-md' placeholder='Search' value={search} onChange={searchData} />
+                        </div>
+                        <div>
+                            <button id="search-button" type="button" class="btn btn-md btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="report-body">
                     <div className="table-responsive">
@@ -57,7 +77,7 @@ const ShowHrDetail = () => {
                             </thead>
                             <tbody>
                                 {
-                                    hrDetail?.map((data) => {
+                                    searchingData.length ? searchingData?.map((data) => {
                                         return <tr key={data.id}>
                                             <td>{data.name}</td>
                                             <td>{data.email}</td>
@@ -73,6 +93,12 @@ const ShowHrDetail = () => {
                                             </td>
                                         </tr>
                                     })
+                                        :
+                                        <tr>
+                                            <td className='text-center text-danger fw-bold' colSpan={8}>
+                                                Data Not Found
+                                            </td>
+                                        </tr>
                                 }
                             </tbody>
                         </table>

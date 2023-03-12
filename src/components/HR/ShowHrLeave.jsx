@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { ThreeDots } from 'react-loader-spinner'
+import { Bars, ThreeDots } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { acceptLeaveDetail, addHrLeave, declineLeaveDetail, getLeave } from '../../Redux/Action/Action'
@@ -60,6 +60,12 @@ const ShowHrLeave = () => {
                             </tbody>
                         </table>
                     </div>
+                    {
+                        loading && <>  <h3 className='text-center' style={{ marginLeft: "450px" }}><Bars height="40"
+                            width="80" /> </h3>
+                            <h5 className='text-center'>Loading Data...</h5>
+                        </>
+                    }
                 </div>
             </div>
             <Modal show={hide} onHide={handleClose}>
@@ -96,9 +102,7 @@ const ShowHrLeave = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            {
-                loading && <> <ThreeDots /> <h3>Loading Data...</h3> </>
-            }
+
         </>
     )
 }

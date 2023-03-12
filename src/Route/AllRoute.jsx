@@ -15,7 +15,7 @@ import ManegerSlidebar from '../components/Manager/ManagerDashboard'
 import ProjectDetail from '../components/Manager/ProjectDetail'
 import AddHR from '../components/Admin/AddHR'
 import ShowLeave from '../components/Admin/ShowLeave'
-import ShowHrDetail from '../components/HR/ShowHrDetail'
+import ShowHrDetail from '../components/Admin/ShowHrDetail'
 import ShowProjectDetail from '../components/Admin/ShowProject'
 import GiveTask from '../components/Admin/GiveTask'
 import GetTaskHr from '../components/HR/GetTaskHr'
@@ -24,6 +24,8 @@ import ShowManegerLeave from '../components/Manager/ShowManegerLeave'
 import ShowManagerTask from '../components/Manager/ShowManagerTask'
 import GetAllClient from '../components/Admin/GetAllClient'
 import EmployeeSlidebar from '../components/Employee/EmployeeSlidebar'
+import Pagination from '../components/Admin/Pagination'
+import AddAward from '../components/HR/AddAward'
 
 
 const AllRoute = () => {
@@ -90,6 +92,10 @@ const AllRoute = () => {
             element: <Slidebar> <ProtectRoute><GiveTask /></ProtectRoute> </Slidebar>
         },
         {
+            path: "/page",
+            element: <Slidebar> <ProtectRoute><Pagination /></ProtectRoute> </Slidebar>
+        },
+        {
             path: "*",
             element: <><Slidebar ><h2 className='text-center text-danger'>Page Not Found</h2></Slidebar></>
         }
@@ -119,6 +125,10 @@ const AllRoute = () => {
         {
             path: "showemplaoyee",
             element: <HrSlidebar> <ProtectRoute><ShowEmployee /></ProtectRoute> </HrSlidebar>
+        },
+        {
+            path: "addaward",
+            element: <HrSlidebar> <ProtectRoute><AddAward /></ProtectRoute> </HrSlidebar>
         },
         {
             path: "*",

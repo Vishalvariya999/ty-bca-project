@@ -17,6 +17,7 @@ const data = {
   title: "",
   description: "",
   reason: "",
+  award: "",
 };
 
 const initialData = {

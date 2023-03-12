@@ -17,7 +17,6 @@ const MainDashBoard = () => {
     return (
         <>
             <div className="main">
-
                 <div className="searchbar2">
                     <input type="text"
                         name=""

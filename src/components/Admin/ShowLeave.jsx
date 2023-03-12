@@ -55,7 +55,16 @@ const ShowLeave = () => {
             <div className="report-container">
                 <div className="report-header">
                     <h1 className="recent-Articles">Leave Report List</h1>
-                    {/* <button className="view">View All</button> */}
+                    <div className='d-flex flex-row '>
+                        <div className='col-lg-10 mx-1'>
+                            <input type="text" className='form-control form-control-md' placeholder='Search' />
+                        </div>
+                        <div>
+                            <button id="search-button" type="button" class="btn btn-md btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="report-body">
                     <div className="table-responsive">

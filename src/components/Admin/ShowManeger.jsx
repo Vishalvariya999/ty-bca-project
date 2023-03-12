@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { BallTriangle } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteManeger, editManeger, getManegers, getSingleManeger } from '../../Redux/Action/Action'
-import { FiEdit, FiTrash2 } from 'react-icons/fi'
 import { Button, Form, Modal } from 'react-bootstrap'
 
 const ShowManeger = () => {
     const dispatch = useDispatch()
     const [hide, setHide] = useState(false)
+    const [search, setSearch] = useState("")
+    const [searchVal, setSearchVal] = useState("")
 
     const handleClose = () => setHide(false);
     const handleShow = () => setHide(true);
@@ -26,16 +27,35 @@ const ShowManeger = () => {
         handleShow()
         dispatch(dispatch(getSingleManeger(key)))
     }
+    const searchData = (e) => {
+        setSearch(e.target.value)
+        const val = getManeger.filter((c) => {
+            if (c?.name?.toLowerCase().includes(e.target.value.toLowerCase())) {
+                return c
+            }
+        })
+        setSearchVal(val)
+    }
+    const searchingData = search?.length ? searchVal : getManeger
     return (
         <>
             <div className="report-container">
                 <div className="report-header">
                     <h1 className="recent-Articles">Manager List</h1>
-                    {/* <button className="view">View All</button> */}
+                    <div className='d-flex flex-row '>
+                        <div className='col-lg-10 mx-1'>
+                            <input type="text" className='form-control form-control-md' placeholder='Search' value={search} onChange={searchData} />
+                        </div>
+                        <div>
+                            <button id="search-button" type="button" class="btn btn-md btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="report-body">
-                    <div className="table-responsive">
-                        <table className='table  table-bordered'>
+                    <div className="table-responsive rounded">
+                        <table className='table  table-bordered '>
                             <thead className='table table-primary'>
                                 <tr>
                                     <th>Name</th>
@@ -43,7 +63,6 @@ const ShowManeger = () => {
                                     <th>Mobile</th>
                                     <th>Address</th>
                                     <th>Birth Date</th>
-                                    {/* <th>Date of Joining</th> */}
                                     <th>Status</th>
                                     <th>Role</th>
                                     <th>Modify</th>
@@ -51,7 +70,7 @@ const ShowManeger = () => {
                             </thead>
                             <tbody>
                                 {
-                                    getManeger && getManeger?.map((data) => {
+                                    searchingData.length ? searchingData?.map((data) => {
                                         return <tr key={data.id}>
                                             <td>{data.name}</td>
                                             <td>{data.email}</td>
@@ -72,6 +91,12 @@ const ShowManeger = () => {
                                             </td>
                                         </tr>
                                     })
+                                        :
+                                        <tr>
+                                            <td className='text-center text-danger fw-bold' colSpan={8}>
+                                                Data Not Found
+                                            </td>
+                                        </tr>
                                 }
                             </tbody>
                         </table>

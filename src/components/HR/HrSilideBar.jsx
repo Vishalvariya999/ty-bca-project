@@ -85,7 +85,7 @@ const HrSlidebar = ({ children }) => {
                                         <h6>Attendence</h6>
                                     </div>
                                 </NavLink>
-                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/p'}>
+                                <NavLink className="text-dark fw-bold text-decoration-none" to={'/addaward'}>
                                     <div className="option2 nav-option">
                                         <FaAward className='fs-5' />
                                         <h6>Awards</h6>
